@@ -1,60 +1,61 @@
-# fly.toml file generated for directusfly on 2022-09-14T05:00:58Z
+# fly.toml app configuration file generated for navarchfly on 2023-08-14T18:32:50+10:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "directusfly"
+app = "navarchfly"
+primary_region = "syd"
 kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
+kill_timeout = "5s"
+
+[experimental]
+  cmd = ["start.sh"]
+  entrypoint = ["sh"]
+  auto_rollback = true
+
+[build]
 
 [env]
   DB_CLIENT = "sqlite3"
   DB_FILENAME = "/data/database/data.db"
-  STORAGE_LOCATIONS = "local"
+  FLY_PRIMARY_REGION = "sea"
+  PORT = "6055"
   STORAGE_LOCAL_DRIVER = "local"
   STORAGE_LOCAL_ROOT = "/data/uploads"
-  FLY_PRIMARY_REGION = "sea"
-  PORT = 6055
+  STORAGE_LOCATIONS = "local"
 
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
-  cmd = "start.sh"
-  entrypoint = "sh"
-
-[mounts]
-  destination = "/data"
+[[mounts]]
   source = "data"
+  destination = "/data"
 
 [[services]]
-  internal_port = 6055
-  processes = ["app"]
   protocol = "tcp"
-  script_checks = []
+  internal_port = 3000
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
   [services.concurrency]
+    type = "connections"
     hard_limit = 25
     soft_limit = 20
-    type = "connections"
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "1s"
 
   [[services.http_checks]]
+    interval = "10s"
+    timeout = "2s"
     grace_period = "5s"
-    interval = 10000
     method = "get"
     path = "/server/health"
     protocol = "http"
-    timeout = 2000
     tls_skip_verify = false
-    [services.http_checks.headers]
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
