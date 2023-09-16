@@ -1,5 +1,5 @@
 # base node image
-FROM node:16-bullseye-slim as base
+FROM node:18.17-bookworm as base
 
 # set for base and all layer that inherit from it
 ENV NODE_ENV production
@@ -27,7 +27,7 @@ RUN npm prune --production
 FROM base
 
 ENV DATABASE_URL=file:/data/database/data.db
-ENV PORT="6055"
+ENV PORT="8055"
 ENV NODE_ENV="production"
 
 # add shortcut for connecting to database CLI
