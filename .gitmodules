@@ -1,0 +1,3 @@
+[submodule "navarch-extensions"]
+	path = extensions
+	url = https://github.com/navarchtech/extensions.git
