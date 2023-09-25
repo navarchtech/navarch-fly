@@ -18,6 +18,8 @@ ls -a
 # requires .env file config DB_FILENAME="/data/database/data.db"
 cp /myapp/data.db /data/database
 
+cp -r /myapp/uploads /data/uploads
+
 echo "Listing /data/database content"
 ls -a /data/database
 
