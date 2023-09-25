@@ -133,3 +133,7 @@ There are two ways to add extensions:
 2. Installed inside the `extensions` folder.
 
 This works the same as any other Directus installation
+
+### Debugging
+
+1. If it cannot find the data.db file location, it is possible that a .dockerignore file was generated and configured to ignore the .env file. If that is the case, comment it out from the .dockerignore file. This is a temporary solution until a better way to pass in configs is found.
