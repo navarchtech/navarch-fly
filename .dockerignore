@@ -1,2 +1,4 @@
 **/snapshots
-# .env
+.env
+**/seed
+.gitignore

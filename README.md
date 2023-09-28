@@ -134,6 +134,20 @@ There are two ways to add extensions:
 
 This works the same as any other Directus installation
 
+### Fetching files from the live app
+Run the following command to fetch files from the project root
+`fly sftp get <REMOTE_FILE_PATH> <LOCAL_FILE_PATH_TO_SAVE_TO>`
+
+To check if the file is there, run the following command instead
+`fly sftp find <REMOTE_FILE_PATH>`
+
+### New features to deploy
+Stop the current machine (Optional? Never tried deploying updates without running this step first)
+`fly machine stop`
+Select the machine by pressing Spacebar and hit Enter
+
+Next, run `npm run deploy` and wait for health check to complete. If it fails, then will need to check Monitoring logs to debug.
+
 ### Debugging
 
 1. If it cannot find the data.db file location, it is possible that a .dockerignore file was generated and configured to ignore the .env file. If that is the case, comment it out from the .dockerignore file. This is a temporary solution until a better way to pass in configs is found.

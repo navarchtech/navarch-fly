@@ -33,7 +33,16 @@ ENV DATABASE_URL=file:/data/database/data.db
 ENV PORT="8055"
 ENV NODE_ENV="production"
 
-ENV UPLOADS_PATH="/data/uploads"
+ENV STORAGE_LOCATIONS="local"
+ENV STORAGE_LOCAL_DRIVER="local"
+ENV STORAGE_LOCAL_ROOT="/data/uploads"
+
+ENV DB_CLIENT="sqlite3"
+ENV DB_FILENAME="/data/database/data.db"
+
+# Randomly generated key and secret for local dev use
+ENV KEY="c202e2ad-dd22-4023-8106-988224220f72"
+ENV SECRET="f364a4f2f04bd7e297c5a009a40ae105f9129586059b591873a0880027da5fa7"
 
 # add shortcut for connecting to database CLI
 RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
