@@ -141,12 +141,15 @@ Run the following command to fetch files from the project root
 To check if the file is there, run the following command instead
 `fly sftp find <REMOTE_FILE_PATH>`
 
-### New features to deploy
-Stop the current machine (Optional? Never tried deploying updates without running this step first)
-`fly machine stop`
-Select the machine by pressing Spacebar and hit Enter
+### Stop/start the current machine
+To stop a running machine, run `fly machine stop` in the project root.
 
-Next, run `npm run deploy` and wait for health check to complete. If it fails, then will need to check Monitoring logs to debug.
+To start a stopped machine, run `fly machine start` in the project root.
+
+For both commands, options will appear, select the machine by pressing Spacebar and hit Enter.
+
+### New features to deploy
+Run `npm run deploy` and wait for health check to complete. If it fails, then will need to check Monitoring logs to debug.
 
 ### Debugging
 
