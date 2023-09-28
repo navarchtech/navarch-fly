@@ -33,12 +33,15 @@ ENV DATABASE_URL=file:/data/database/data.db
 ENV PORT="8055"
 ENV NODE_ENV="production"
 
+ENV UPLOADS_PATH="/data/uploads"
+
 # add shortcut for connecting to database CLI
 RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
 
 WORKDIR /myapp
 
 COPY --from=production-deps /myapp/node_modules /myapp/node_modules
+COPY ./uploads/. /myapp/uploads/.
 
 ADD . .
 
