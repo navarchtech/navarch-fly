@@ -4,13 +4,17 @@
   "description": "Directus on fly.io starter",
   "scripts": {
     "deploy": "fly deploy --remote-only",
-    "start": "npx directus start"
+    "start": "npx directus start",
+    "dev": "nodemon --exec npx directus start"
   },
   "dependencies": {
-    "directus": "^10.5.2",
+    "directus": "^9.21.2",
     "directus-extension-wpslug-interface": "^1.1.0",
     "pdfmake": "^0.2.7",
     "sqlite3": "^5.1.6",
     "tedious": "^16.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
