@@ -77,7 +77,7 @@ You can change this by following Fly's DNS docs and then just update the secret 
 We also need to create a volume in Fly to persist our app data (SQLite DB) so that Fly can persist the data stored across deployments and container restarts. Again, we can do that using the Fly command line.
 
 ```bash
-flyctl volumes create data --region [REGION] --size 1
+flyctl volumes create data --region [REGION] --size 1 --yes
 ```
 
 > Note: REGION should be the region selected when launching the app. You can check the region chosen by running `flyctl regions list`.
@@ -101,7 +101,7 @@ We are ready for our first deployment.
 
 You have two ways to deploy:
 
-- Via `npm run deploy`: deploy the current folder
+- Via `npm run deploy`: deploy the current folder (this has memory set to 512MB, otherwise Directus will crash with OOM)
 - Via Github actions.
 
 GitHub actions workflows are configured to run on push to the `main` branch. 
