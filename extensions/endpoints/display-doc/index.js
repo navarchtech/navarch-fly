@@ -1,0 +1,1 @@
+"use strict";var e=require("fs"),t=t=>{t.get("/",((t,n)=>{const o=decodeURIComponent(t.query.filepath);if(console.log(o),!e.existsSync(o))return void n.status(404).send("PDF file not found");n.setHeader("Content-Type","application/pdf"),n.setHeader("Content-Disposition","inline; filename=sample.pdf");e.createReadStream(o).pipe(n)}))};module.exports=t;
