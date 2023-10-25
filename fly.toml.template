@@ -21,9 +21,10 @@ kill_timeout = "5s"
   DB_PORT=26257
   DB_DATABASE=navarch_db
   DB_USER=admin
-  DB_PASSWORD=???
+  DB_PASSWORD=set in fly secret
   DB_SSL=true
 
+  # set DB_PASSWORD in fly secret and make sure it's properly injected into the connection string here
   DB_CONNECTION_STRING=postgres://admin:${DB_PASSWORD}@ep-autumn-glitter-11480569.ap-southeast-1.aws.neon.tech:5432/navarch_db?sslmode=verify-full
 
 [[mounts]]
