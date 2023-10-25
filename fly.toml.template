@@ -16,13 +16,15 @@ kill_timeout = "5s"
 [build]
 
 [env]
-  DB_CLIENT = "sqlite3"
-  DB_FILENAME = "/data/database/data.db"
-  FLY_PRIMARY_REGION = "syd"
-  PORT = "8055"
-  STORAGE_LOCAL_DRIVER = "local"
-  STORAGE_LOCAL_ROOT = "/data/uploads"
-  STORAGE_LOCATIONS = "local"
+  DB_CLIENT="pg"
+  DB_HOST=ep-autumn-glitter-11480569.ap-southeast-1.aws.neon.tech
+  DB_PORT=26257
+  DB_DATABASE=navarch_db
+  DB_USER=admin
+  DB_PASSWORD=???
+  DB_SSL=true
+
+  DB_CONNECTION_STRING=postgres://admin:${DB_PASSWORD}@ep-autumn-glitter-11480569.ap-southeast-1.aws.neon.tech:5432/navarch_db?sslmode=verify-full
 
 [[mounts]]
   source = "data"

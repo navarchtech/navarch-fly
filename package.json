@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "directus": "^9.21.2",
+    "directus-extension-schema-management-module": "^1.2.0",
     "directus-extension-wpslug-interface": "^1.1.0",
     "pdfmake": "^0.2.7",
     "sqlite3": "^5.1.6",
