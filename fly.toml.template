@@ -27,6 +27,12 @@ kill_timeout = "5s"
   # set DB_PASSWORD in fly secret and make sure it's properly injected into the connection string here
   DB_CONNECTION_STRING=postgres://admin:${DB_PASSWORD}@ep-autumn-glitter-11480569.ap-southeast-1.aws.neon.tech:5432/navarch_db?sslmode=verify-full
 
+  FLY_PRIMARY_REGION = "syd"
+  PORT = "8055"
+  STORAGE_LOCAL_DRIVER = "local"
+  STORAGE_LOCAL_ROOT = "/data/uploads"
+  STORAGE_LOCATIONS = "local"
+
 [[mounts]]
   source = "data"
   destination = "/mnt/data"
