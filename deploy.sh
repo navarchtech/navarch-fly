@@ -14,6 +14,7 @@ APP_NAME=$1
 APP_ORG="${2:-navarch}"
 APP_EMAIL="${3:-'admin@navarchtech.com'}"
 APP_PASSWORD="${4:-password}"
+DB_PASSWORD="${5:-tIlc1nLhxdz0}"
 
 # If APP_NAME is not provided, exit
 if [ -z "$APP_NAME" ]; then
