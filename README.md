@@ -151,6 +151,23 @@ For both commands, options will appear, select the machine by pressing Spacebar 
 ### New features to deploy
 Run `npm run deploy` and wait for health check to complete. If it fails, then will need to check Monitoring logs to debug.
 
-### Debugging
+## Debugging
+### Database
+```
+If it cannot find the data.db file location, it is possible that a .dockerignore file was generated and configured to ignore the .env file. If that is the case, comment it out from the .dockerignore file. This is a temporary solution until a better way to pass in configs is found.
+```
 
-1. If it cannot find the data.db file location, it is possible that a .dockerignore file was generated and configured to ignore the .env file. If that is the case, comment it out from the .dockerignore file. This is a temporary solution until a better way to pass in configs is found.
+### Deployment
+For this error
+```
+Error failed to fetch an image or build from source: error connecting to docker: failed building options: failed probing “navarch”: context deadline exceeded
+```
+
+Run the following commands
+```
+fly version update (get the latest version, or however you prefer to do that)
+fly wireguard websockets enable
+fly xxxx (whatever flyctl commands you wanted to run when you got the error)
+```
+
+If that fails, run `fly doctor report` to debug further
