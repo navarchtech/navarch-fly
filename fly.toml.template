@@ -29,9 +29,10 @@ kill_timeout = "5s"
 
   FLY_PRIMARY_REGION = "syd"
   PORT = "8055"
-  STORAGE_LOCAL_DRIVER = "local"
-  STORAGE_LOCAL_ROOT = "/data/uploads"
-  STORAGE_LOCATIONS = "local"
+  STORAGE_LOCATIONS = "gcs"
+  STORAGE_GCS_DRIVER = "gcs"
+  STORAGE_GCS_KEY_FILENAME = "nav-apps-dev-71da-e069131b2888.json"
+  STORAGE_GCS_BUCKET = "nav-uploads-dev-demo"
 
 [[mounts]]
   source = "data"
