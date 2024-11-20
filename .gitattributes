@@ -1,1 +1,1 @@
-templates/* filter=git-crypt diff=git-crypt
+templates/** filter=git-crypt diff=git-crypt
