@@ -1,9 +1,9 @@
 {
-  "name": "directus-fly",
+  "name": "navarch-directus-fly",
   "version": "1.0.0",
   "description": "Directus on fly.io starter",
   "scripts": {
-    "deploy": "fly deploy --remote-only --vm-memory 512",
+    "deploy": "fly deploy --remote-only",
     "start": "npx directus start",
     "dev": "nodemon --exec npx directus start"
   },

@@ -6,15 +6,12 @@
 # and by default deploys to the navarch organization. Note that
 # the app name must be unique across all of fly.io.
 # Please run `flyctl auth login` before running this script.
-# eg: ./deploy.sh devapp navarch 'admin@navarchtech' 'password'
-# Or simply: eg: ./deploy.sh devapp
+# eg: ./deploy.sh navarch
+# Or simply: eg: ./deploy.sh navarch
 
 # The following environment variables must be set:
 APP_NAME=$1
 APP_ORG="${2:-navarch}"
-APP_EMAIL="${3:-'admin@navarchtech.com'}"
-APP_PASSWORD="${4:-password}"
-DB_PASSWORD="${5:-tIlc1nLhxdz0}"
 
 # If APP_NAME is not provided, exit
 if [ -z "$APP_NAME" ]; then
@@ -22,9 +19,17 @@ if [ -z "$APP_NAME" ]; then
     exit 1
 fi
 
+# If the env file is not found, exit
+if [ ! -f templates/envs/$APP_NAME.env ]; then
+    echo "Environment file not found: templates/envs/$APP_NAME.env"
+    exit 1
+fi
+
+source templates/envs/$APP_NAME.env
+
 echo "Deploying '$APP_NAME' to fly.io org '$APP_ORG'"
-echo "Admin email: $APP_EMAIL"
-echo "Admin password: $APP_PASSWORD"
+echo "Admin email: $ADMIN_EMAIL"
+echo "Admin password: $ADMIN_PASSWORD"
 
 # First check if the app is already present
 # If it is, then we will not create a new app
@@ -38,21 +43,22 @@ for APP in $APP_LIST; do
 done
 
 if [ "$APP_FOUND" = false ]; then
-  flyctl launch --name $APP_NAME --org $APP_ORG --region syd --copy-config --no-deploy
+  fly launch --name $APP_NAME --org $APP_ORG --region syd --copy-config --no-deploy --vm-memory "2048" --vm-cpus 1
 
   # Replace the generated fly.toml with our own fly.toml.template
   # while replacing the app name to the one provided.
-  cp fly.toml.template fly.toml
+  # cp fly.toml.template fly.toml
   sed -i -e "s/^app = .*/app = \"$APP_NAME\"/" fly.toml && rm fly.toml-e
-  
+
   flyctl secrets set KEY=$(openssl rand -hex 32)
   flyctl secrets set SECRET=$(openssl rand -hex 32)
-  flyctl secrets set ADMIN_EMAIL=$APP_EMAIL
-  flyctl secrets set ADMIN_PASSWORD=$APP_PASSWORD
+  flyctl secrets set ADMIN_EMAIL=$ADMIN_EMAIL
+  flyctl secrets set ADMIN_PASSWORD=$ADMIN_PASSWORD
   flyctl secrets set PUBLIC_URL=https://$APP_NAME.fly.dev
   flyctl volumes create data --region syd --size 1 --yes
 else
   echo "App '$APP_NAME' already exists, update only."
 fi
 
+npm i
 npm run deploy

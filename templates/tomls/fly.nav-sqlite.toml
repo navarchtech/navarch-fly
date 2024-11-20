@@ -1,0 +1,61 @@
+# fly.toml app configuration file generated for darryltest on 2023-09-30T12:17:56+10:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "navarchapp"
+primary_region = "syd"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[experimental]
+  cmd = ["start.sh"]
+  entrypoint = ["sh"]
+  auto_rollback = true
+
+[build]
+
+[env]
+  DB_CLIENT = "sqlite3"
+  DB_FILENAME = "/data/database/data.db"
+  FLY_PRIMARY_REGION = "syd"
+  PORT = "8055"
+  STORAGE_LOCAL_DRIVER = "local"
+  STORAGE_LOCAL_ROOT = "/data/uploads"
+  STORAGE_LOCATIONS = "local"
+
+[[mounts]]
+  source = "data"
+  destination = "/mnt/data"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8055
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "1s"
+
+  [[services.http_checks]]
+    interval = "10s"
+    timeout = "2s"
+    grace_period = "5s"
+    method = "get"
+    path = "/server/health"
+    protocol = "http"
+    tls_skip_verify = false
