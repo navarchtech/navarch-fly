@@ -41,10 +41,6 @@ WORKDIR /myapp
 # TODO: Use ARG to pass in which env and toml file to use
 COPY --from=production-deps /myapp/node_modules /myapp/node_modules
 COPY ./uploads/. /myapp/uploads/.
-
-# The templates/secrets/brokenhillmines/ folder contains a .json.enc file that is base64 encoded.
-# Decrypt it and save it as .json file, and then copy it to the root of the app.
-RUN ls -1 ./templates/secrets/brokenhillmines/ | grep .json.enc | xargs -I {} sh -c 'echo {} | cut -d "." -f 1' | xargs -I {} sh -c 'cat ./templates/secrets/brokenhillmines/{}.json.enc | base64 -d > ./templates/secrets/brokenhillmines/{}.json'
 COPY ./templates/secrets/brokenhillmines/. .
 COPY ./templates/envs/brokenhillmines.env .env
 COPY ./templates/tomls/fly.brokenhillmines.toml fly.toml
