@@ -1,24 +1,25 @@
 # base node image
-FROM node:18.17-bullseye-slim as base
+FROM node:18.17-bullseye-slim AS base
 
 # set for base and all layer that inherit from it
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssl sqlite3 python3 build-essential && \
+    apt-get install -y --no-install-recommends openssl sqlite3 python3 build-essential postgresql-client && \
     rm -rf /var/lib/apt/lists/* && \
     yarn config set python /usr/bin/python3
 
 # Install all node_modules, including dev dependencies
-FROM base as deps
+FROM base AS deps
 
 WORKDIR /myapp
 
 ADD package.json .npmrc ./
 RUN npm install --production=false
+#  --target_arch=x64 --target_platform=linux --target_libc=glibc
 
 # Setup production node_modules
-FROM base as production-deps
+FROM base AS production-deps
 
 WORKDIR /myapp
 
@@ -29,29 +30,31 @@ RUN npm prune --production
 # Finally, build the production image with minimal footprint
 FROM base
 
-ENV DATABASE_URL=file:/data/database/data.db
 ENV PORT="8055"
 ENV NODE_ENV="production"
 
-ENV STORAGE_LOCATIONS="local"
-ENV STORAGE_LOCAL_DRIVER="local"
-ENV STORAGE_LOCAL_ROOT="/data/uploads"
-
-ENV DB_CLIENT="sqlite3"
-ENV DB_FILENAME="/data/database/data.db"
-
-# Randomly generated key and secret for local dev use
-ENV KEY="c202e2ad-dd22-4023-8106-988224220f72"
-ENV SECRET="f364a4f2f04bd7e297c5a009a40ae105f9129586059b591873a0880027da5fa7"
-
 # add shortcut for connecting to database CLI
-RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
+# RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
 
 WORKDIR /myapp
 
+# TODO: Use ARG to pass in which env and toml file to use
 COPY --from=production-deps /myapp/node_modules /myapp/node_modules
 COPY ./uploads/. /myapp/uploads/.
+COPY ./templates/secrets/brokenhillmines/. .
+COPY ./templates/envs/brokenhillmines.env .env
+COPY ./templates/tomls/fly.brokenhillmines.toml fly.toml
 
-ADD . .
+# TODO: This is potentially adding other companies secrets.
+# May be better to add files individually which are needed.
+# ADD . .
+
+# Seed not ready yet
+# ADD seed ./seed
+COPY package.json .
+COPY package-lock.json .
+COPY extensions ./extensions
+COPY fonts ./fonts
+COPY start.sh .
 
 CMD ["bash", "start.sh"]
