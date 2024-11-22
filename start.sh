@@ -16,7 +16,10 @@ ls -a
 
 # replaces the database file with a seeded file, remove this and it will create it's own blank slate data.db file with the ADMIN_EMAIL and ADMIN_PASSWORD secret as the admin login detail
 # requires .env file config DB_FILENAME="/data/database/data.db"
-# cp /myapp/data.db /data/database
+USING_SQLLITE=false
+if [ "$USING_SQLLITE" = true ]; then
+    cp /myapp/data.db /data/database
+fi
 
 cp -r -a /myapp/uploads/. /data/uploads
 
