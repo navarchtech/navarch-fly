@@ -16,12 +16,12 @@ ls -a
 
 # replaces the database file with a seeded file, remove this and it will create it's own blank slate data.db file with the ADMIN_EMAIL and ADMIN_PASSWORD secret as the admin login detail
 # requires .env file config DB_FILENAME="/data/database/data.db"
-cp /myapp/data.db /data/database
+# cp /myapp/data.db /data/database
 
 cp -r -a /myapp/uploads/. /data/uploads
 
-echo "Listing /data/database content"
-ls -a /data/database
+# echo "Listing /data/database content"
+# ls -a /data/database
 
 npx directus bootstrap
 npx directus start

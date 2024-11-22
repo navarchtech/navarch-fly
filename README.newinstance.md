@@ -18,6 +18,7 @@
     - Create a new file in [tomls](./templates/tomls/) for the new client, populate important info.
     - Create a new file in [envs](./templates/envs/) for the new client, populate important info.
 8. Deploy the changes to fly.io under the navarch org. To do that, you'll need to copy some sensitive values from the `[client_name].env` file and replace the `deploy.sh` script, and run `./deploy.sh [clientname]` to deploy to fly.io. Make sure you open the URL to kick start the application and iterate the configs until you get a successful instance running.
+    - Be sure to update the Dockefile if deploying for 'navarch' test instance
 9. We can now seed the database (`navarch_db`) with our data.
     - Depending on whether you have a clean export of a database we can start with, you may need to dump it from a known good Navarch instance. Inspect the [db-1-backup.sh](./db-1-backup.sh) and change the env path before running to dump a copy of `navarch_*` schemas to your local machine.
     - Then, inspect the [db-2-restore.sh](./db-2-restore.sh) and change the env path before running to load the dumped data into the new database for the new client.
