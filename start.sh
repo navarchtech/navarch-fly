@@ -19,12 +19,11 @@ ls -a
 USING_SQLLITE=false
 if [ "$USING_SQLLITE" = true ]; then
     cp /myapp/data.db /data/database
+    echo "Listing /data/database content"
+    ls -a /data/database
 fi
 
 cp -r -a /myapp/uploads/. /data/uploads
-
-# echo "Listing /data/database content"
-# ls -a /data/database
 
 npx directus bootstrap
 npx directus start
