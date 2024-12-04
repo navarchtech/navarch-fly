@@ -26,6 +26,7 @@ if [ ! -f templates/envs/$APP_NAME.env ]; then
 fi
 
 source templates/envs/$APP_NAME.env
+cp templates/envs/$APP_NAME.env .env
 cp templates/tomls/fly.$APP_NAME.toml fly.toml
 
 echo "Deploying '$APP_NAME' to fly.io org '$APP_ORG'"
