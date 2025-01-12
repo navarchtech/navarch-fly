@@ -29,6 +29,25 @@ source templates/envs/$APP_NAME.env
 cp templates/envs/$APP_NAME.env .env
 cp templates/tomls/fly.$APP_NAME.toml fly.toml
 
+# Add safe guard to avoid deploying to the wrong client.
+# If APP_NAME is not present in the loaded .env's PUBLIC_URL, exit
+if [[ ! "$PUBLIC_URL" == *"$APP_NAME"* ]]; then
+    echo "APP_NAME does not match PUBLIC_URL in .env. Is your .env properly configured?"
+    exit 1
+fi
+
+# Check that `app = "$APP_NAME"` is present in fly.toml
+if ! grep -q "app = \"$APP_NAME\"" fly.toml; then
+    echo "app = \"$APP_NAME\" not found in fly.toml"
+    exit 1
+fi
+
+# Check that `APP_NAME = "$APP_NAME"` is present in fly.toml
+if ! grep -q "APP_NAME = \"$APP_NAME\"" fly.toml; then
+    echo "APP_NAME = \"$APP_NAME\" not found in fly.toml"
+    exit 1
+fi
+
 echo "Deploying '$APP_NAME' to fly.io org '$APP_ORG'"
 echo "Admin email: $ADMIN_EMAIL"
 echo "Admin password: $ADMIN_PASSWORD"
