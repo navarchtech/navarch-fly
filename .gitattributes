@@ -1,1 +1,3 @@
-templates/** filter=git-crypt diff=git-crypt
+templates/envs/** filter=git-crypt diff=git-crypt
+templates/secrets/** filter=git-crypt diff=git-crypt
+templates/tomls/** filter=git-crypt diff=git-crypt

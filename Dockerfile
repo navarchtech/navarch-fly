@@ -47,6 +47,8 @@ COPY ./uploads/. /myapp/uploads/.
 COPY ./templates/secrets/${APP_NAME}/. .
 COPY ./templates/envs/${APP_NAME}.env .env
 COPY ./templates/tomls/fly.${APP_NAME}.toml fly.toml
+COPY ./templates/deps/${APP_NAME}/package.json package.json
+COPY ./templates/deps/${APP_NAME}/package-lock.json package-lock.json
 
 # TODO: This is potentially adding other companies secrets.
 # May be better to add files individually which are needed.
@@ -54,8 +56,6 @@ COPY ./templates/tomls/fly.${APP_NAME}.toml fly.toml
 
 # Seed not ready yet
 # ADD seed ./seed
-COPY package.json .
-COPY package-lock.json .
 COPY extensions ./extensions
 COPY fonts ./fonts
 COPY start.sh .

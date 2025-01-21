@@ -25,9 +25,14 @@ if [ ! -f templates/envs/$APP_NAME.env ]; then
     exit 1
 fi
 
+# A folder Dockerfile will try to copy if exists
+mkdir -p uploads
+
 source templates/envs/$APP_NAME.env
 cp templates/envs/$APP_NAME.env .env
 cp templates/tomls/fly.$APP_NAME.toml fly.toml
+cp templates/deps/$APP_NAME/package.json package.json
+cp templates/deps/$APP_NAME/package-lock.json package-lock.json
 
 # Add safe guard to avoid deploying to the wrong client.
 # If APP_NAME is not present in the loaded .env's PUBLIC_URL, exit
@@ -82,4 +87,4 @@ else
 fi
 
 npm i
-npm run deploy
+APP_NAME=$APP_NAME npm run deploy

@@ -1,0 +1,132 @@
+// export const assayTableHeaders = ref<TableHeader[]>([
+//     // {
+//     // 	text: `Index`,
+//     // 	value: 'index',
+//     // 	sortable: false,
+//     // 	width: 60,
+//     // 	align: 'left',
+//     // },
+//     {
+//         text: `Method`,
+//         value: 'method',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Commodity',
+//         value: 'commodity',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Seller Assay',
+//         value: 'seller_assay',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Buyer Assay',
+//         value: 'buyer_assay',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Umpire Assay',
+//         value: 'umpire_assay',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Losing Party',
+//         value: 'losing_party',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     }
+// ]);
+// export const tableHeaders = ref<TableHeader[]>([
+//     {
+//         text: `Lot`,
+//         value: 'lot_number',
+//         sortable: false,
+//         width: 60,
+//         align: 'left',
+//     },
+//     // {
+//     // 	text: `ID`,
+//     // 	value: 'id',
+//     // 	sortable: false,
+//     // 	width: 150,
+//     // 	align: 'left',
+//     // },
+//     {
+//         text: 'Dry Weight',
+//         value: 'dry_weight',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     // {
+//     // 	text: 'Seller Lab',
+//     // 	value: 'seller_lab',
+//     // 	sortable: false,
+//     // 	width: 150,
+//     // 	align: 'left',
+//     // },
+//     {
+//         // Seller Assay
+//         text: 'Seller Assay',
+//         value: 'seller_declared',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         // Buyer Assay
+//         text: 'Buyer Assay',
+//         value: 'buyer_declared',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'To Umpire',
+//         value: 'to_umpire',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Losing Party',
+//         value: 'losing_party',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Final Assay',
+//         value: 'final_assay',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Commodity',
+//         value: 'commodity',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+//     {
+//         text: 'Method',
+//         value: 'method',
+//         sortable: false,
+//         width: 150,
+//         align: 'left',
+//     },
+// ]);

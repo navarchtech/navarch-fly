@@ -1,0 +1,30 @@
+{
+	"name": "directus-extension-navarch-docgen-invoice-v2",
+	"description": "Please enter a description for your extension",
+	"icon": "extension",
+	"version": "1.0.0",
+	"keywords": [
+		"directus",
+		"directus-extension",
+		"directus-custom-interface"
+	],
+	"directus:extension": {
+		"type": "interface",
+		"path": "dist/index.js",
+		"source": "src/index.ts",
+		"host": "^9.26.0"
+	},
+	"scripts": {
+		"build": "directus-extension build",
+		"dev": "directus-extension build -w --no-minify",
+		"link": "directus-extension link"
+	},
+	"devDependencies": {
+		"@directus/extensions-sdk": "9.26.0",
+		"typescript": "^5.6.3",
+		"vue": "^3.5.13"
+	},
+	"dependencies": {
+		"sass": "^1.81.0"
+	}
+}

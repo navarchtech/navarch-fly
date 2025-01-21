@@ -1,0 +1,31 @@
+name: Push File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Build
+      uses: bash
+      run: |
+        pushd prefill-relationship \
+        && npm i \
+        && npm run build \
+        popd
+
+    - name: Pushes test file
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.SINGLE_REPO_API_TOKEN }}
+      with:
+        source_file: 'prefill-relationship/dist/*'
+        destination_repo: 'navarchtech/navarch'
+        destination_folder: 'docker/navarch/extensions/interfaces/prefill-relationship'
+        user_email: 'admin@navarchtech.com'
+        user_name: 'Navarch Bot'
+        commit_message: 'Push artifact for custom extension: prefill-relationship'
