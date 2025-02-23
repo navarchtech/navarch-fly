@@ -8,6 +8,7 @@
     "dev": "nodemon --exec npx directus start"
   },
   "dependencies": {
+    "@directus/extensions": "^3.0.1",
     "directus": "^9.21.2",
     "directus-extension-schema-management-module": "^1.2.0",
     "directus-extension-wpslug-interface": "^1.1.0",
