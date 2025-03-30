@@ -13,6 +13,35 @@
 APP_NAME=$1
 APP_ORG="${2:-navarch}"
 
+# Check for new commits in the remote branch
+git fetch
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+BASE=$(git merge-base @ @{u})
+
+echo "$LOCAL $REMOTE $BASE"
+if [ $? -ne 0 ]; then
+    echo "Error: Unable to fetch remote branch. Please check your network connection."
+    exit 1
+fi
+
+if [ $LOCAL = $REMOTE ]; then
+    echo "Local branch is up-to-date with remote branch."
+elif [ $LOCAL = $BASE ]; then
+    echo "New commits are available in the remote branch. Pulling and rebasing..."
+    git pull --rebase
+    if [ $? -ne 0 ]; then
+        echo "Failed to pull and rebase. Please resolve conflicts and try again."
+        exit 1
+    fi
+elif [ $REMOTE = $BASE ]; then
+    echo "Local branch has new commits that are not pushed to remote. Please push your changes first."
+    exit 1
+else
+    echo "Local and remote branches have diverged. Please pull code and resolve any conflicts before try again."
+    exit 1
+fi
+
 # If APP_NAME is not provided, exit
 if [ -z "$APP_NAME" ]; then
     echo "Please provide an app name as the first argument"

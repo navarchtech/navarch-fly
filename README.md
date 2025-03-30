@@ -171,3 +171,10 @@ fly xxxx (whatever flyctl commands you wanted to run when you got the error)
 ```
 
 If that fails, run `fly doctor report` to debug further
+
+## Second Deployment (Dev - Newer Directus)
+
+Created a new instance with Directus 10.12.
+Branched off current Neon DB into: `ep-broad-snowflake-a19twd4h.ap-southeast-1.aws.neon.tech`
+`fly.toml` updated to use new DB branch but use the same GCS bucket so generated invoice can be "seen" from the second instance.
+Deployed using `./deploy.sh navarch-10-12`.
