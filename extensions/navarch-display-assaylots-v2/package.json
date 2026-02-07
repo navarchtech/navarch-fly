@@ -1,36 +1,32 @@
 {
-	"name": "navarch-parcellots-weight-v2",
+	"name": "navarch-display-assaylots-v2",
 	"description": "Please enter a description for your extension",
 	"icon": "extension",
 	"version": "1.0.0",
 	"keywords": [
 		"directus",
 		"directus-extension",
-		"directus-extension-interface"
+		"directus-extension-display"
 	],
 	"type": "module",
 	"files": [
 		"dist"
 	],
 	"directus:extension": {
-		"type": "interface",
-		"path": "../../navarch-fly/extensions/navarch-parcellots-weight-v2/dist/index.js",
+		"type": "display",
+		"path": "../../navarch-fly/extensions/navarch-display-assaylots-v2/dist/index.js",
 		"source": "src/index.ts",
 		"host": "^10.10.0"
 	},
 	"scripts": {
-		"build": "directus-extension build && copy package.json ..\\..\\navarch-fly\\extensions\\navarch-parcellots-weight-v2\\package.json",
+		"build": "directus-extension build && copy package.json ..\\..\\navarch-fly\\extensions\\navarch-display-assaylots-v2\\package.json",
 		"dev": "directus-extension build -w --no-minify",
 		"link": "directus-extension link",
 		"validate": "directus-extension validate"
 	},
 	"devDependencies": {
-		"@directus/extensions-sdk": "17.0.5",
+		"@directus/extensions-sdk": "17.0.7",
 		"typescript": "^5.9.3",
 		"vue": "^3.5.27"
-	},
-	"dependencies": {
-		"sass": "^1.97.3",
-		"uuid": "^13.0.0"
 	}
 }

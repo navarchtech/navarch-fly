@@ -1,5 +1,7 @@
 {
-	"name": "invoice-generator-button",
+	"name": "navarch-prefiller-forexrate",
+	"description": "Please enter a description for your extension",
+	"icon": "extension",
 	"version": "1.0.0",
 	"keywords": [
 		"directus",
@@ -12,12 +14,12 @@
 	],
 	"directus:extension": {
 		"type": "interface",
-		"path": "../../navarch-fly/extensions/invoice-generator-button/dist/index.js",
+		"path": "../../navarch-fly/extensions/navarch-prefiller-forexrate/dist/index.js",
 		"source": "src/index.ts",
 		"host": "^10.10.0"
 	},
 	"scripts": {
-		"build": "directus-extension build && copy package.json ..\\..\\navarch-fly\\extensions\\invoice-generator-button\\package.json",
+		"build": "directus-extension build && copy package.json ..\\..\\navarch-fly\\extensions\\navarch-prefiller-forexrate\\package.json",
 		"dev": "directus-extension build -w --no-minify",
 		"link": "directus-extension link",
 		"validate": "directus-extension validate"
@@ -28,6 +30,7 @@
 		"vue": "^3.5.27"
 	},
 	"dependencies": {
-		"sass": "^1.97.3"
+		"sass": "^1.97.3",
+		"scss": "^0.2.4"
 	}
 }

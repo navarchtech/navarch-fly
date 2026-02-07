@@ -1,5 +1,7 @@
 {
-	"name": "invoice-generator-button",
+	"name": "navarch-docgen-cashflow",
+	"description": "Please enter a description for your extension",
+	"icon": "extension",
 	"version": "1.0.0",
 	"keywords": [
 		"directus",
@@ -12,12 +14,12 @@
 	],
 	"directus:extension": {
 		"type": "interface",
-		"path": "../../navarch-fly/extensions/invoice-generator-button/dist/index.js",
+		"path": "../../navarch-fly/extensions/navarch-docgen-cashflow/dist/index.js",
 		"source": "src/index.ts",
 		"host": "^10.10.0"
 	},
 	"scripts": {
-		"build": "directus-extension build && copy package.json ..\\..\\navarch-fly\\extensions\\invoice-generator-button\\package.json",
+		"build": "directus-extension build && copy package.json ..\\..\\navarch-fly\\extensions\\navarch-docgen-cashflow\\package.json",
 		"dev": "directus-extension build -w --no-minify",
 		"link": "directus-extension link",
 		"validate": "directus-extension validate"
