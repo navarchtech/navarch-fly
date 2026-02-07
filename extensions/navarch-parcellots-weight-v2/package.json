@@ -14,7 +14,7 @@
 	],
 	"directus:extension": {
 		"type": "interface",
-		"path": "../../navarch-fly/extensions/navarch-parcellots-weight-v2/dist/index.js",
+		"path": "dist/index.js",
 		"source": "src/index.ts",
 		"host": "^10.10.0"
 	},
