@@ -19,7 +19,7 @@
 		"host": "^10.10.0"
 	},
 	"scripts": {
-		"build": "directus-extension build && mkdir \"..\\..\\navarch-fly\\extensions\\navarch-qp-select\" 2>nul && copy package.json ..\\..\\navarch-fly\\extensions\\navarch-qp-select\\package.json && mkdir \"..\\..\\navarch-fly\\extensions\\navarch-qp-select\\dist\" 2>nul && copy dist\\index.js ..\\..\\navarch-fly\\extensions\\navarch-qp-select\\dist\\index.js",
+		"build": "node ../deploy-extension.js navarch-qp-select",
 		"dev": "directus-extension build -w --no-minify",
 		"link": "directus-extension link",
 		"validate": "directus-extension validate"
