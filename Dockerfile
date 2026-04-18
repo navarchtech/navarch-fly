@@ -1,5 +1,5 @@
 # base node image
-FROM node:18.17-bullseye-slim AS base
+FROM node:22.22-bullseye-slim AS base
 
 # set for base and all layer that inherit from it
 ENV NODE_ENV=production
@@ -57,7 +57,6 @@ COPY ./templates/tomls/fly.${APP_NAME}.toml fly.toml
 COPY package.json .
 COPY package-lock.json .
 COPY extensions ./extensions
-COPY fonts ./fonts
 COPY start.sh .
 
 CMD ["bash", "start.sh"]
