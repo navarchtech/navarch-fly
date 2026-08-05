@@ -1,11 +1,13 @@
 # base node image
-FROM node:18.17-bullseye-slim AS base
+FROM node:22-bullseye-slim AS base
 
 # set for base and all layer that inherit from it
 ENV NODE_ENV=production
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssl sqlite3 python3 build-essential postgresql-client && \
+# RUN apt-get update && \
+#     apt-get install -y --no-install-recommends openssl sqlite3 python3 build-essential postgresql-client && \
+RUN apt-get update --allow-insecure-repositories && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends openssl sqlite3 python3 build-essential postgresql-client && \
     rm -rf /var/lib/apt/lists/* && \
     yarn config set python /usr/bin/python3
 

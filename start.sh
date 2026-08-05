@@ -23,6 +23,18 @@ if [ "$USING_SQLLITE" = true ]; then
     ls -a /data/database
 fi
 
+# Echo out the DB_HOST and DB_USER and DB_DATABASE
+echo "DB_HOST: $DB_HOST"
+echo "DB_USER: $DB_USER"
+echo "DB_DATABASE: $DB_DATABASE"
+# echo "DB_CONNECTION_STRING: $DB_CONNECTION_STRING"
+
+# Rename .env to avoid conflicts with environment variables
+if [ -f .env ]; then
+    echo "Renaming .env to .env.bak to ensure environment variables take precedence"
+    mv .env .env.bak
+fi
+
 cp -r -a /myapp/uploads/. /data/uploads
 
 npx directus bootstrap
