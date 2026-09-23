@@ -1,3 +1,6 @@
 **/snapshots
 **/seed
 .gitignore
+.git
+node_modules
+data.db
